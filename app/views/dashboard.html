@@ -5,47 +5,24 @@
 
 #{list items:stations, as:'station'}
 <section class="ui segment">
-    <div class="ui five cards">
-        <div class="ui card">
-            <div class="content">
-                <div class="header">${station.name}</div>
-            </div>
-        </div>
-        <div class="ui card">
-            <div class="content">
-                <div class="header">Weather</div>
-                <div class="description">
-                    <p>${station.weather}</p>
-                </div>
-            </div>
-        </div>
-        <div class="ui card">
-            <div class="content">
-                <div class="header">Temp</div>
-                <div class="description">
-                    <p>${station.tempC} degC</p>
-                    <p>${station.tempF} degF</p>
-                </div>
-            </div>
-        </div>
-        <div class="ui card">
-            <div class="content">
-                <div class="header">Wind</div>
-                <div class="description">
-                    <p>${station.wind} bft</p>
-                </div>
-            </div>
-        </div>
-        <div class="ui card">
-            <div class="content">
-                <div class="header">Pressure</div>
-                <div class="description">
-                    <p>${station.readings[station.latestLoc].pressure} hPa</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    #{listreadings station:station/}
+    <h2 class="ui header">
+        ${station.name}
+    </h2>
+    <a href="/dashboard/${station.id}">
+        <button class="ui icon button">
+            <i class="folder open icon"></i>
+        </button>
+    </a>
 </section>
 #{/list}
+
+<form class="ui stacked segment form" action="/dashboard/addstation" method="POST">
+    <div class="one fields">
+        <div class="field">
+            <label>Name</label>
+            <input placeholder="Name" type="text" name="name">
+        </div>
+    </div>
+    <button class="ui blue submit button">Add Station</button>
+</form>
 

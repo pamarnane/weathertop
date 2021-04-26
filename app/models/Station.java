@@ -15,12 +15,18 @@ public class Station extends Model {
     public List<Reading> readings = new ArrayList<Reading>();
     public double lat;
     public double lng;
-    public int latestLoc;
+    public int pressure;
     public String weather;
     public double tempC;
     public double tempF;
     public int wind;
+    public String windDirection;
+    public double windChill;
 
+    public Station(String name)
+    {
+        this.name = name;
+    }
 
     public Station(String name, int lat, int lng)
     {

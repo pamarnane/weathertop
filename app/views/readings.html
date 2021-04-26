@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+#{set title:'Dashboard' /}
+
+#{menu id:"dashboard"/}
+
+<section class="ui segment">
+    <div class="ui five cards">
+        <div class="ui card">
+            <div class="content">
+                <div class="header">${station.name}</div>
+            </div>
+        </div>
+        <div class="ui card">
+            <div class="content">
+                <div class="header">Weather</div>
+                <div class="description">
+                    <p>${station.weather}</p>
+                </div>
+            </div>
+        </div>
+        <div class="ui card">
+            <div class="content">
+                <div class="header">Temp</div>
+                <div class="description">
+                    <p>${station.tempC} degC</p>
+                    <p>${station.tempF} degF</p>
+                </div>
+            </div>
+        </div>
+        <div class="ui card">
+            <div class="content">
+                <div class="header">Wind</div>
+                <div class="description">
+                    <p>${station.wind} bft</p>
+                    <p>${station.windDirection}</p>
+                    <p>Feels like</p>
+                    <p>${station.windChill}</p>
+                </div>
+            </div>
+        </div>
+        <div class="ui card">
+            <div class="content">
+                <div class="header">Pressure</div>
+                <div class="description">
+                    <p>${station.pressure} hPa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    #{listreadings station:station/}
+</section>
+#{addreading station:station/}
+
+
