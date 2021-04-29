@@ -47,3 +47,5 @@ Member(m1):
   lastname: Marnane
   email: patrick@weathertop.com
   password: secret
+  stations:
+    - s1

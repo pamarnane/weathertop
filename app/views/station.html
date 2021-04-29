@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+#{set title: 'Readings' /}
+
+#{menu id:"dashboard"/}
+
+<section class="ui segment">
+    <div class="ui five cards">
+        <div class="ui card">
+            <div class="content">
+                <div class="header">${station.name}</div>
+            </div>
+        </div>
+        <div class="ui card">
+            <div class="content">
+                <div class="header">Weather</div>
+                <div class="description">
+                    <p>${latestReading.weatherDesc}</p>
+                </div>
+            </div>
+        </div>
+        <div class="ui card">
+            <div class="content">
+                <div class="header">Temp</div>
+                <div class="description">
+                    <p>${latestReading.temperature} degC</p>
+                    <p>${latestReading.tempF} degF</p>
+                </div>
+            </div>
+        </div>
+        <div class="ui card">
+            <div class="content">
+                <div class="header">Wind</div>
+                <div class="description">
+                    <p>${latestReading.windSpeed} bft</p>
+                    <p>${latestReading.windDirectionString}</p>
+                    <p>Feels like</p>
+                    <p>${latestReading.windChill}</p>
+                </div>
+            </div>
+        </div>
+        <div class="ui card">
+            <div class="content">
+                <div class="header">Pressure</div>
+                <div class="description">
+                    <p>${latestReading.pressure} hPa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    #{listreadings station:station/}
+</section>
+#{addreading station:station/}
+
+
