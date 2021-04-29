@@ -28,16 +28,22 @@ Reading(r4):
 
 Station(s1):
   name: Tramore
-  lat: 52.160
-  lng: -7.152
+  lat: 52.16
+  lng: -7.15
   readings:
     - r1
     - r2
 
 Station(s2):
   name: Dunmore
-  lat: 52.149
-  lng: -6.994
+  lat: 52.14
+  lng: -6.99
   readings:
     - r3
     - r4
+
+Member(m1):
+  firstname: Patrick
+  lastname: Marnane
+  email: patrick@weathertop.com
+  password: secret

@@ -8,7 +8,7 @@
     <h2 class="ui header">
         ${station.name}
     </h2>
-    <a href="/dashboard/${station.id}">
+    <a href="/station/${station.id}">
         <button class="ui icon button">
             <i class="folder open icon"></i>
         </button>
@@ -17,10 +17,18 @@
 #{/list}
 
 <form class="ui stacked segment form" action="/dashboard/addstation" method="POST">
-    <div class="one fields">
+    <div class="three fields">
         <div class="field">
             <label>Name</label>
             <input placeholder="Name" type="text" name="name">
+        </div>
+        <div class="field">
+            <label>Latitude</label>
+            <input placeholder="00.00" type="text" step=".01" name="lat">
+        </div>
+        <div class="field">
+            <label>Longitude</label>
+            <input placeholder="00.00" type="text" step=".01" name="lng">
         </div>
     </div>
     <button class="ui blue submit button">Add Station</button>
