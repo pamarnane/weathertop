@@ -7,11 +7,17 @@
     <div class="ui five cards">
         <div class="ui card">
             <div class="content">
+                <i class="right floated huge blue compass icon"></i>
                 <div class="header">${station.name}</div>
+                <div class="description">
+                    <p>Lat: ${station.lat}</p>
+                    <p>Lng: ${station.lng}</p>
+                </div>
             </div>
         </div>
         <div class="ui card">
             <div class="content">
+                <i class="right floated huge blue ${latestReading.weatherIcon}"></i>
                 <div class="header">Weather</div>
                 <div class="description">
                     <p>${latestReading.weatherDesc}</p>
@@ -20,18 +26,20 @@
         </div>
         <div class="ui card">
             <div class="content">
+                <i class="right floated huge blue temperature low icon"></i>
                 <div class="header">Temp</div>
                 <div class="description">
-                    <p>${latestReading.temperature} degC</p>
+                    <p>${latestReading.tempC} degC</p>
                     <p>${latestReading.tempF} degF</p>
                 </div>
             </div>
         </div>
         <div class="ui card">
             <div class="content">
+                <i class="right floated blue huge wind icon"></i>
                 <div class="header">Wind</div>
                 <div class="description">
-                    <p>${latestReading.windSpeed} bft</p>
+                    <p>${latestReading.windBft} bft</p>
                     <p>${latestReading.windDirectionString}</p>
                     <p>Feels like</p>
                     <p>${latestReading.windChill}</p>
@@ -40,6 +48,7 @@
         </div>
         <div class="ui card">
             <div class="content">
+                <i class="right floated blue huge ${latestReading.weatherIcon}"></i>
                 <div class="header">Pressure</div>
                 <div class="description">
                     <p>${latestReading.pressure} hPa</p>

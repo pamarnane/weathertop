@@ -1,14 +1,18 @@
+/*
 package controllers;
 
 import java.util.HashMap;
 
 public class WeatherConv {
     public static HashMap<Integer, String> weatherString;
+    public static HashMap<Integer, String> weatherIcon;
 
     public WeatherConv()
     {
         weatherString = new HashMap<Integer, String>();
+        weatherIcon = new HashMap<Integer, String>();
         fillWeatherString();
+        fillWeatherIconMap();
     }
 
     private void fillWeatherString()
@@ -21,7 +25,18 @@ public class WeatherConv {
         weatherString.put(600,"Rain");
         weatherString.put(700,"Snow");
         weatherString.put(800,"Thunder");
+    }
 
+    private void fillWeatherIconMap()
+    {
+        weatherIcon.put(100,"sun icon");
+        weatherIcon.put(200,"cloud sun icon");
+        weatherIcon.put(300,"cloud icon");
+        weatherIcon.put(400,"cloud rain icon");
+        weatherIcon.put(500,"cloud showers heavy icon");
+        weatherIcon.put(600,"umbrella icon");
+        weatherIcon.put(700,"snowflake icon");
+        weatherIcon.put(800,"bolt icon");
     }
 
     public static String getWeatherString(int code)
@@ -168,3 +183,4 @@ public class WeatherConv {
 
     }
 }
+*/
