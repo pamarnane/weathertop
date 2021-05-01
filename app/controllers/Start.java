@@ -11,7 +11,7 @@ public class Start extends Controller {
 
     public static void index()
     {
-        WeatherConv weatherConvert = new WeatherConv();
+       // WeatherConv weatherConvert = new WeatherConv();
         render("start.html");
     }
 

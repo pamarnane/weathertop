@@ -19,8 +19,6 @@ package controllers;
         import play.Logger;
         import play.mvc.Controller;
 
-       // import static controllers.Application.*;
-
 public class Dashboard extends Controller
 {
     public static void index()
