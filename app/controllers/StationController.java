@@ -20,12 +20,12 @@ public class StationController extends Controller {
 
         if (i != 0)
         {
-            Summary latestReading = new Summary(station.readings.get(station.readings.size() - 1));
+            Summary latestReading = new Summary(station.readings.get(i-1), station);
             render ("station.html", station, latestReading);
         }
         else
         {
-            render("stationnew.html", station);
+            render("station-new.html", station);
         }
 
     }

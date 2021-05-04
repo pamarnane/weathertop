@@ -1,29 +1,37 @@
 package models;
 
+import play.db.jpa.GenericModel;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
-import java.util.HashMap;
+import java.util.*;
 
 @Entity
 public class Summary extends Model {
-
 
     public String weatherDesc;
     public String weatherIcon;
 
     public double tempC;
+    public double maxTempC;
+    public double minTempC;
     public double tempF;
 
 
     public int windBft;
     public String windDirectionString;
     public double windChill;
+    public double maxWindSpd;
+    public double minWindSpd;
 
     public int pressure;
+    public int maxPressure;
+    public int minPressure;
 
     public static HashMap<Integer, String> weatherString;
     public static HashMap<Integer, String> weatherIconMap;
+
+
 
     public Summary()
     {
@@ -54,6 +62,7 @@ public class Summary extends Model {
     {
         weatherString = new HashMap<Integer, String>();
         weatherIconMap = new HashMap<Integer, String>();
+
         fillWeatherString();
         fillWeatherIconMap();
 
@@ -65,6 +74,38 @@ public class Summary extends Model {
         this.windDirectionString = calcWindDirection(latestReading.windDirection);
         this.windChill = calcWindChill(latestReading.temperature, latestReading.windSpeed);
         this.pressure = latestReading.pressure;
+    }
+
+    public Summary(Reading latestReading, Station station)
+    {
+        weatherString = new HashMap<Integer, String>();
+        weatherIconMap = new HashMap<Integer, String>();
+
+        fillWeatherString();
+        fillWeatherIconMap();
+
+        station.tempHashSet();
+        station.windHashSet();
+        station.pressHashSet();
+
+
+        this.weatherDesc = getWeatherString(latestReading.code);
+        this.weatherIcon = getWeatherIcon(latestReading.code);
+        this.tempC = latestReading.temperature;
+        this.tempF = convertTempFahrenheit(latestReading.temperature);
+        this.windBft = calcWindBeaufort(latestReading.windSpeed);
+        this.windDirectionString = calcWindDirection(latestReading.windDirection);
+        this.windChill = calcWindChill(latestReading.temperature, latestReading.windSpeed);
+        this.pressure = latestReading.pressure;
+
+        this.minTempC = Collections.min(station.tempHashSet);
+        this.maxTempC = Collections.max(station.tempHashSet);
+
+        this.minWindSpd = Collections.min(station.windHashSet);
+        this.maxWindSpd = Collections.max(station.windHashSet);
+
+        this.minPressure = Collections.min(station.pressHashSet);
+        this.maxPressure = Collections.max(station.pressHashSet);
 
     }
 
@@ -92,22 +133,22 @@ public class Summary extends Model {
         weatherIconMap.put(800,"bolt icon");
     }
 
-    public static String getWeatherString(int code)
+   private String getWeatherString(int code)
     {
         return weatherString.get(code);
     }
 
-    public static String getWeatherIcon(int code)
+    private String getWeatherIcon(int code)
     {
         return weatherIconMap.get(code);
     }
 
-    public static double convertTempFahrenheit(double tempC)
+    private double convertTempFahrenheit(double tempC)
     {
         return (tempC * 9/5  + 32);
     }
 
-    public static int calcWindBeaufort(double wind)
+    private int calcWindBeaufort(double wind)
     {
         int windBeaufort = 0;
 
@@ -163,7 +204,7 @@ public class Summary extends Model {
         return windBeaufort;
     }
 
-    public static String calcWindDirection(int windDirection)
+    private String calcWindDirection(int windDirection)
     {
         String windString = "";
 
@@ -235,11 +276,10 @@ public class Summary extends Model {
         return windString;
     }
 
-    public static double calcWindChill(double temp, double windVel)
+    private double calcWindChill(double temp, double windVel)
     {
         //Math.round(WeatherConv.calcWindChill(latestReading.temperature, latestReading.windSpeed) * 100.0) / 100.0;
         return Math.round(13.12 + 0.6215*temp-11.37*Math.pow(windVel, 0.16) + 0.3965*temp*Math.pow(windVel, 0.16) * 100.0) / 100.0;
 
     }
-
 }
