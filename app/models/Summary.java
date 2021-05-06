@@ -31,7 +31,9 @@ public class Summary extends Model {
     public static HashMap<Integer, String> weatherString;
     public static HashMap<Integer, String> weatherIconMap;
 
-
+    public HashSet<Double> tempHashSet;
+    private HashSet<Integer> pressHashSet;
+    private HashSet<Double> windHashSet;
 
     public Summary()
     {
@@ -84,9 +86,9 @@ public class Summary extends Model {
         fillWeatherString();
         fillWeatherIconMap();
 
-        station.tempHashSet();
-        station.windHashSet();
-        station.pressHashSet();
+    //    station.tempHashSet();
+    //    station.windHashSet();
+    //    station.pressHashSet();
 
 
         this.weatherDesc = getWeatherString(latestReading.code);
@@ -98,14 +100,16 @@ public class Summary extends Model {
         this.windChill = calcWindChill(latestReading.temperature, latestReading.windSpeed);
         this.pressure = latestReading.pressure;
 
-        this.minTempC = Collections.min(station.tempHashSet);
-        this.maxTempC = Collections.max(station.tempHashSet);
+       // this.minTempC = Collections.min(station.tempHashSet);
+        this.minTempC = Collections.min(tempHashSet(station));
+       // this.maxTempC = Collections.max(station.tempHashSet);
+        this.maxTempC = Collections.max(tempHashSet(station));
 
-        this.minWindSpd = Collections.min(station.windHashSet);
-        this.maxWindSpd = Collections.max(station.windHashSet);
+        this.minWindSpd = Collections.min(windHashSet(station));
+        this.maxWindSpd = Collections.max(windHashSet(station));
 
-        this.minPressure = Collections.min(station.pressHashSet);
-        this.maxPressure = Collections.max(station.pressHashSet);
+        this.minPressure = Collections.min(pressHashSet(station));
+        this.maxPressure = Collections.max(pressHashSet(station));
 
     }
 
@@ -281,5 +285,33 @@ public class Summary extends Model {
         //Math.round(WeatherConv.calcWindChill(latestReading.temperature, latestReading.windSpeed) * 100.0) / 100.0;
         return Math.round(13.12 + 0.6215*temp-11.37*Math.pow(windVel, 0.16) + 0.3965*temp*Math.pow(windVel, 0.16) * 100.0) / 100.0;
 
+    }
+
+    public HashSet<Double> tempHashSet(Station station)
+    {
+        tempHashSet = new HashSet<>();
+        for (int i = 0; i < station.readings.size(); i++)
+        {
+            tempHashSet.add(station.readings.get(i).temperature);
+        }
+        return tempHashSet;
+    }
+
+    public HashSet<Integer> pressHashSet(Station station)
+    {
+        pressHashSet = new HashSet<>();
+        for (int i = 0; i < station.readings.size(); i++) {
+            pressHashSet.add(station.readings.get(i).pressure);
+        }
+        return pressHashSet;
+    }
+
+    public HashSet<Double> windHashSet(Station station)
+    {
+        windHashSet = new HashSet<>();
+        for (int i = 0; i < station.readings.size(); i++) {
+            windHashSet.add(station.readings.get(i).windSpeed);
+        }
+        return windHashSet;
     }
 }

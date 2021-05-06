@@ -1,26 +1,36 @@
 <table class="ui fixed table">
     <thead>
     <tr>
+        <th>Timestamp</th>
         <th>Code</th>
-        <th>Temp</th>
-        <th>Wind Speed</th>
-        <th>Pressure</th>
+        <th>Temp (degC)</th>
+        <th>Wind Speed (km/hr)</th>
+        <th>Pressure (hPa)</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
     #{list items:_station.readings, as:'reading'}
     <tr>
         <td>
-        ${reading.code}
+            ${reading.date}
         </td>
         <td>
-        ${reading.temperature}
+            ${reading.code}
         </td>
         <td>
-        ${reading.windSpeed}
+            ${reading.temperature}
         </td>
         <td>
-        ${reading.pressure}
+            ${reading.windSpeed}
+        </td>
+        <td>
+            ${reading.pressure}
+        </td>
+        <td>
+            <a href="/station/${_station.id}/deletereading/${reading.id}">
+                <button class="ui red submit button">Delete</button>
+            </a>
         </td>
     </tr>
     #{/list}

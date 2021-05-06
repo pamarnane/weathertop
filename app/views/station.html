@@ -17,10 +17,10 @@
         </div>
         <div class="ui card">
             <div class="content">
-                <i class="right floated huge blue ${latestReading.weatherIcon}"></i>
+                <i class="right floated huge blue ${station.summary.weatherIcon}"></i>
                 <div class="header">Weather</div>
                 <div class="description">
-                    <p>${latestReading.weatherDesc}</p>
+                    <p>${station.summary.weatherDesc}</p>
                 </div>
             </div>
         </div>
@@ -29,10 +29,10 @@
                 <i class="right floated huge blue temperature low icon"></i>
                 <div class="header">Temp</div>
                 <div class="description">
-                    <p>${latestReading.tempC} degC</p>
-                    <p>${latestReading.tempF} degF</p>
-                    <p>Max: ${latestReading.maxTempC} degC</p>
-                    <p>Min: ${latestReading.minTempC} degC</p>
+                    <p>${station.summary.tempC} degC</p>
+                    <p>${station.summary.tempF} degF</p>
+                    <p>Max: ${station.summary.maxTempC} degC</p>
+                    <p>Min: ${station.summary.minTempC} degC</p>
                 </div>
             </div>
         </div>
@@ -41,23 +41,22 @@
                 <i class="right floated blue huge wind icon"></i>
                 <div class="header">Wind</div>
                 <div class="description">
-                    <p>${latestReading.windBft} bft</p>
-                    <p>${latestReading.windDirectionString}</p>
-                    <p>Feels like</p>
-                    <p>${latestReading.windChill}</p>
-                    <p>Max: ${latestReading.maxWindSpd}</p>
-                    <p>Min: ${latestReading.minWindSpd}</p>
+                    <p>${station.summary.windBft} bft</p>
+                    <p>${station.summary.windDirectionString}</p>
+                    <p>Feels like: ${station.summary.windChill} degC</p>
+                    <p>Max: ${station.summary.maxWindSpd} km/hr</p>
+                    <p>Min: ${station.summary.minWindSpd} km/hr</p>
                 </div>
             </div>
         </div>
         <div class="ui card">
             <div class="content">
-                <i class="right floated blue huge ${latestReading.weatherIcon}"></i>
+                <i class="right floated blue huge globe icon"></i>
                 <div class="header">Pressure</div>
                 <div class="description">
-                    <p>${latestReading.pressure} hPa</p>
-                    <p>Max: ${latestReading.maxPressure}</p>
-                    <p>Min: ${latestReading.minPressure}</p>
+                    <p>${station.summary.pressure} hPa</p>
+                    <p>Max: ${station.summary.maxPressure}</p>
+                    <p>Min: ${station.summary.minPressure}</p>
                 </div>
             </div>
         </div>
@@ -65,5 +64,6 @@
     #{listreadings station:station/}
 </section>
 #{addreading station:station/}
+
 
 

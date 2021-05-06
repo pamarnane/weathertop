@@ -16,6 +16,7 @@ package controllers;
         import models.Member;
         import models.Station;
         import models.Reading;
+        import models.Summary;
         import play.Logger;
         import play.mvc.Controller;
 
@@ -26,6 +27,16 @@ public class Dashboard extends Controller
         Logger.info("Rendering Dashboard");
         Member member = Accounts.getLoggedInMember();
         List<Station> stations = member.stations;
+
+        for (int i = 0; i < stations.size(); i++)
+        {
+            //Refactor to handle stations being added with no readings
+            if (stations.get(i).readings.size() != 0)
+            {
+                stations.get(i).summary = new Summary(stations.get(i).readings.get(i), stations.get(i));
+            }
+        }
+        // Refactor to display something for no values for station
         render ("dashboard.html", stations);
     }
 
@@ -36,6 +47,18 @@ public class Dashboard extends Controller
         member.stations.add(station);
         member.save();
         Logger.info("Adding Station" + name);
+        redirect("/dashboard");
+    }
+
+    public static void deleteStation(Long id)
+    {
+        Member member = Accounts.getLoggedInMember();
+
+        Station station = Station.findById(id);
+        //int i = member.stations.indexOf(station);
+        member.stations.remove(member.stations.indexOf(station));
+        member.save();
+        Logger.info("Deleting Station");
         redirect("/dashboard");
     }
     

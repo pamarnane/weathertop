@@ -5,11 +5,13 @@
 # Home page
 GET     /                                       Start.index
 GET     /dashboard                              Dashboard.index
-GET     /station/{id}                           StationController.index
+GET     /station/{id}                           Station.index
 GET     /about                                  About.index
+GET     /dashboard/deletestation/{id}           Dashboard.deleteStation
+GET     /station/{stationid}/deletereading/{id} Station.deleteReading
 
 POST    /dashboard/addstation                   Dashboard.addStation
-POST    /station/{id}/addreading                StationController.addReading
+POST    /station/{id}/addreading                Station.addReading
 
 GET     /signup                                 Accounts.signup
 GET     /login                                  Accounts.login

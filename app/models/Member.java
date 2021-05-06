@@ -36,4 +36,7 @@ public class Member extends Model
     {
         return this.password.equals(password);
     }
+
+
+
 }

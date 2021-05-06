@@ -3,6 +3,7 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
+import java.sql.Timestamp;
 
 @Entity
 public class Reading extends Model {
@@ -11,6 +12,7 @@ public class Reading extends Model {
     public double windSpeed;
     public int pressure;
     public int windDirection;
+    public Timestamp date;
 
     public Reading()
     {
@@ -29,6 +31,15 @@ public class Reading extends Model {
         this.windSpeed = windSpeed;
         this.pressure = pressure;
         this.windDirection = windDirection;
+    }
+
+    public Reading(int code, double temperature, double windSpeed, int windDirection, int pressure, Timestamp date) {
+        this.code = code;
+        this.temperature = temperature;
+        this.windSpeed = windSpeed;
+        this.pressure = pressure;
+        this.windDirection = windDirection;
+        this.date = date;
     }
 
     public int getCode() {
