@@ -86,11 +86,6 @@ public class Summary extends Model {
         fillWeatherString();
         fillWeatherIconMap();
 
-    //    station.tempHashSet();
-    //    station.windHashSet();
-    //    station.pressHashSet();
-
-
         this.weatherDesc = getWeatherString(latestReading.code);
         this.weatherIcon = getWeatherIcon(latestReading.code);
         this.tempC = latestReading.temperature;
@@ -214,67 +209,67 @@ public class Summary extends Model {
 
         if (windDirection > 348.75 && windDirection <= 11.25)
         {
-            windString = "N";
+            windString = "North";
         }
         else if (windDirection > 11.25 && windDirection <= 33.75)
         {
-            windString = "NNE";
+            windString = "North North East";
         }
         else if (windDirection > 33.75 && windDirection <= 56.25)
         {
-            windString = "NE";
+            windString = "North East";
         }
         else if (windDirection > 56.25 && windDirection <= 78.75)
         {
-            windString = "ENE";
+            windString = "East North East";
         }
         else if (windDirection > 78.75 && windDirection <= 101.25)
         {
-            windString = "E";
+            windString = "East";
         }
         else if (windDirection > 101.25 && windDirection <= 123.75)
         {
-            windString = "ESE";
+            windString = "East South East";
         }
         else if (windDirection > 123.75 && windDirection <= 146.25)
         {
-            windString = "SE";
+            windString = "South East";
         }
         else if (windDirection > 146.25 && windDirection <= 168.75)
         {
-            windString = "SSE";
+            windString = "South South East";
         }
         else if (windDirection > 168.75 && windDirection <= 191.25)
         {
-            windString = "S";
+            windString = "South";
         }
         else if (windDirection > 191.25 && windDirection <= 213.75)
         {
-            windString = "SSW";
+            windString = "South South West";
         }
         else if (windDirection > 213.75 && windDirection <= 236.25)
         {
-            windString = "SW";
+            windString = "South West";
         }
         else if (windDirection > 236.25 && windDirection <= 258.75)
         {
-            windString = "WSW";
+            windString = "West South West";
         }
         else if (windDirection > 258.75 && windDirection <= 281.25)
         {
-            windString = "W";
+            windString = "West";
         }
         else if (windDirection > 281.25 && windDirection <= 303.75)
         {
-            windString = "WNW";
+            windString = "West North West";
         }
         else if (windDirection > 303.75 && windDirection <= 326.25)
         {
-            windString = "W";
+            windString = "North West";
         }
         else if (windDirection > 326.25 && windDirection <= 348.75)
         {
-            windString = "WNW";
+            windString = "North North West";
         }
 
         return windString;

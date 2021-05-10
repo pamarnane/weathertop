@@ -7,6 +7,7 @@ GET     /                                       Start.index
 GET     /dashboard                              Dashboard.index
 GET     /station/{id}                           Station.index
 GET     /about                                  About.index
+GET     /accounts                               Accounts.index
 GET     /dashboard/deletestation/{id}           Dashboard.deleteStation
 GET     /station/{stationid}/deletereading/{id} Station.deleteReading
 

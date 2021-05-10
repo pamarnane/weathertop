@@ -1,27 +1,30 @@
 package controllers;
 
 import models.Summary;
+
+import models.Trending;
 import play.Logger;
 import play.mvc.Controller;
 
 import java.sql.Timestamp;
+import java.util.Date;
+
+import static models.Trending.*;
 
 
 public class Station extends Controller {
 
-    public static void index(Long id)
+    public void index(Long id)
     {
         models.Station station = models.Station.findById(id);
+        Trending trendingVals = trendingVals(station.readings);
+        //trendingVals = trendingVals(station.readings);
         Logger.info("Rendering station");
 
-        int i = station.readings.size();
-
-        if (i != 0)
+        if (station.readings.size() != 0)
         {
-            //Summary latestReading = new Summary(station.readings.get(i-1), station);
-            station.summary = new Summary(station.readings.get(i-1), station);
-            //render ("station.html", station, latestReading);
-            render ("station.html", station);
+            station.summary = new Summary(station.readings.get(station.readings.size()-1), station);
+            render ("station.html", station, trendingVals);
         }
         else
         {
@@ -30,9 +33,9 @@ public class Station extends Controller {
 
     }
 
-    public static void addReading(Long id, int code, double temp, double windSpeed, int windDirection, int pressure, Timestamp date)
+    public static void addReading(Long id, int code, double temp, double windSpeed, int windDirection, int pressure)
     {
-        date = new Timestamp(System.currentTimeMillis());
+        Date date = new Timestamp(System.currentTimeMillis());
         //models.Reading newReading = new models.Reading(code, temp, windSpeed, windDirection, pressure);
         models.Reading newReading = new models.Reading(code, temp, windSpeed, windDirection, pressure, date);
         models.Station station = models.Station.findById(id);

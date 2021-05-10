@@ -34,6 +34,7 @@
                     <p>Max: ${station.summary.maxTempC} degC</p>
                     <p>Min: ${station.summary.minTempC} degC</p>
                 </div>
+                <i class="right floated blue ${trendingVals.tempTrend}"></i>
             </div>
         </div>
         <div class="ui card">
@@ -47,17 +48,20 @@
                     <p>Max: ${station.summary.maxWindSpd} km/hr</p>
                     <p>Min: ${station.summary.minWindSpd} km/hr</p>
                 </div>
+                <i class="right floated blue ${trendingVals.windTrend}"></i>
             </div>
         </div>
         <div class="ui card">
             <div class="content">
                 <i class="right floated blue huge globe icon"></i>
+
                 <div class="header">Pressure</div>
                 <div class="description">
                     <p>${station.summary.pressure} hPa</p>
                     <p>Max: ${station.summary.maxPressure}</p>
                     <p>Min: ${station.summary.minPressure}</p>
                 </div>
+                <i class="right floated blue ${trendingVals.pressTrend}"></i>
             </div>
         </div>
     </div>

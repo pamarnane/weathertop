@@ -14,8 +14,6 @@ public class Station extends Model {
     public String name;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
-    public HashSet<Double> windHashSet;
-    public HashSet<Integer> pressHashSet = new HashSet<>();
     public double lat;
     public double lng;
     public Summary summary;
