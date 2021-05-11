@@ -6,6 +6,13 @@ import play.mvc.Controller;
 
 public class Accounts extends Controller
 {
+    public static void index()
+    {
+
+        Member member = getLoggedInMember();
+        render("accounts.html", member);
+    }
+
     public static void signup()
     {
         render("signup.html");
@@ -49,5 +56,16 @@ public class Accounts extends Controller
             login();
         }
         return member;
+    }
+
+    public static void update(Long id, String firstname, String lastname, String email, String password)
+    {
+     Member member = Member.findById(id);
+     member.firstname = firstname;
+     member.lastname = lastname;
+     member.email = email;
+     member.password = password;
+     member.save();
+     redirect("/dashboard");
     }
 }
