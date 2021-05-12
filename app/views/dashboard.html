@@ -6,66 +6,18 @@
 #{list items:stations, as:'station'}
 <section class="ui segment">
     <section class="ui segment">
-        <div class="ui five cards">
-            <div class="ui card">
-                <div class="content">
-                    <i class="right floated huge blue compass icon"></i>
-                    <div class="header">${station.name}</div>
-                    <div class="description">
-                        <p>Lat: ${station.lat}</p>
-                        <p>Lng: ${station.lng}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="ui card">
-                <div class="content">
-                    <i class="right floated huge blue ${station.summary?.weatherIcon}"></i>
-                    <div class="header">Weather</div>
-                    <div class="description">
-                        <p>${station.summary?.weatherDesc}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="ui card">
-                <div class="content">
-                    <i class="right floated huge blue temperature low icon"></i>
-                    <div class="header">Temp</div>
-                    <div class="description">
-                        <p>${station.summary?.tempC} degC</p>
-                        <p>${station.summary?.tempF} degF</p>
-                        <p>Max: ${station.summary?.maxTempC} degC</p>
-                        <p>Min: ${station.summary?.minTempC} degC</p>
-                    </div>
-                </div>
-            </div>
-            <div class="ui card">
-                <div class="content">
-                    <i class="right floated blue huge wind icon"></i>
-                    <div class="header">Wind</div>
-                    <div class="description">
-                        <p>${station.summary?.windBft} bft</p>
-                        <p>${station.summary?.windDirectionString}</p>
-                        <p>Feels like: ${station.summary?.windChill} degC</p>
-                        <p>Max: ${station.summary?.maxWindSpd} km/hr</p>
-                        <p>Min: ${station.summary?.minWindSpd} km/hr</p>
-                    </div>
-                </div>
-            </div>
-            <div class="ui card">
-                <div class="content">
-                    <i class="right floated blue huge globe icon"></i>
-                    <div class="header">Pressure</div>
-                    <div class="description">
-                        <p>${station.summary?.pressure} hPa</p>
-                        <p>Max: ${station.summary?.maxPressure}</p>
-                        <p>Min: ${station.summary?.minPressure}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <h2 class="ui header">
-        ${station.name}
-    </h2>
+    #{if station.summary != null}
+        #{stationcards station:station, trendingVals:trendingVals/}
+        <h2 class="ui header">
+            ${station.name}
+        </h2>
+    #{/if}
+    #{else}
+        <h2 class="ui header">
+            ${station.name}
+        </h2>
+        <h3>No readings entered yet</h3>
+    #{/else}
     <a href="/station/${station.id}">
         <button class="ui icon button">
             <i class="folder open icon"></i>

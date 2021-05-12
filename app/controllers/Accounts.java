@@ -8,7 +8,6 @@ public class Accounts extends Controller
 {
     public static void index()
     {
-
         Member member = getLoggedInMember();
         render("accounts.html", member);
     }
@@ -27,7 +26,14 @@ public class Accounts extends Controller
     {
         Logger.info("Registering new user " + email);
         Member member = new Member(firstname, lastname, email, password);
-        member.save();
+        try
+        {
+            member.save();
+        }
+        catch (Exception e)
+        {
+            redirect("login");
+        }
         redirect("/");
     }
 
@@ -58,6 +64,14 @@ public class Accounts extends Controller
         return member;
     }
 
+    /**
+     * This method is used to update the users details
+     *
+     * @param firstname This is the first name of the person
+     * @param lastname  This is the last name of the person
+     * @param email     This is the persons email address
+     * @param password  This is the persons password
+     */
     public static void update(Long id, String firstname, String lastname, String email, String password)
     {
      Member member = Member.findById(id);

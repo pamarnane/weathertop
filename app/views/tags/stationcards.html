@@ -1,0 +1,62 @@
+<div class="ui five cards">
+    <div class="ui card" style="background-color: #0000000d">
+        <div class="content">
+            <i class="right floated huge blue compass icon"></i>
+            <div class="header">${_station.name}</div>
+            <div class="description">
+                <p>Lat: ${_station.lat}</p>
+                <p>Lng: ${_station.lng}</p>
+            </div>
+        </div>
+    </div>
+    <div class="ui card" style="background-color: #0000000d">
+        <div class="content">
+            <i class="right floated huge blue ${_station.summary.weatherIcon}"></i>
+            <div class="header">Weather</div>
+            <div class="description">
+                <p>${_station.summary.weatherDesc}</p>
+            </div>
+        </div>
+    </div>
+    <div class="ui card" style="background-color: #0000000d">
+        <div class="content">
+            <i class="right floated huge blue temperature low icon"></i>
+            <div class="header">Temp</div>
+            <div class="description">
+                <p>${_station.summary.tempC} degC</p>
+                <p>${ _station.summary.tempF} degF</p>
+                <p>Max: ${_station.summary.maxTempC} degC</p>
+                <p>Min: ${_station.summary.minTempC} degC</p>
+            </div>
+            <i class="right floated blue ${_trendingVals?.tempTrend}"></i>
+        </div>
+    </div>
+    <div class="ui card" style="background-color: #0000000d">
+        <div class="content">
+            <i class="right floated blue huge wind icon"></i>
+            <div class="header">Wind</div>
+            <div class="description">
+                <p>${_station.summary.windBft} bft</p>
+                <p>${_station.summary.windDirectionString}</p>
+                <p>Feels like: ${_station.summary.windChill} degC</p>
+                <p>Max: ${_station.summary.maxWindSpd} km/hr</p>
+                <p>Min: ${_station.summary.minWindSpd} km/hr</p>
+            </div>
+            <i class="right floated blue ${_trendingVals?.windTrend}"></i>
+        </div>
+    </div>
+    <div class="ui card" style="background-color: #0000000d">
+        <div class="content">
+            <i class="right floated blue huge globe icon"></i>
+
+            <div class="header">Pressure</div>
+            <div class="description">
+                <p>${_station.summary.pressure} hPa</p>
+                <p>Max: ${_station.summary.maxPressure}</p>
+                <p>Min: ${_station.summary.minPressure}</p>
+            </div>
+            <i class="right floated blue ${_trendingVals?.pressTrend}"></i>
+        </div>
+    </div>
+</div>
+

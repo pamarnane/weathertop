@@ -22,6 +22,7 @@ package controllers;
 
 public class Dashboard extends Controller
 {
+
     public static void index()
     {
         Logger.info("Rendering Dashboard");
@@ -30,13 +31,11 @@ public class Dashboard extends Controller
 
         for (int i = 0; i < stations.size(); i++)
         {
-            //Refactor to handle stations being added with no readings
             if (stations.get(i).readings.size() != 0)
             {
                 stations.get(i).summary = new Summary(stations.get(i).readings.get(i), stations.get(i));
             }
         }
-        // Refactor to display something for no values for station
         render ("dashboard.html", stations);
     }
 

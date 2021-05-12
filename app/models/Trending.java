@@ -32,11 +32,7 @@ public class Trending {
                 tempList.add(reading.temperature);
                 windList.add(reading.windSpeed);
                 pressList.add(reading.pressure);
-                /*tempAvg =+ reading.temperature;
-                windAvg =+ reading.temperature;
-                pressAvg =+ reading.temperature;*/
             }
-
 
             tempAvg = tempList.stream().mapToDouble(value -> value).average().orElse(0.0);
             windAvg = windList.stream().mapToDouble(value -> value).average().orElse(0.0);
@@ -81,6 +77,12 @@ public class Trending {
                 trendingVals.pressTrend = "arrows alternate horizontal icon";
             }
         }
+/*        else
+        {
+            trendingVals.tempTrend = "arrows alternate horizontal icon";
+            trendingVals.windTrend = "arrows alternate horizontal icon";
+            trendingVals.pressTrend = "arrows alternate horizontal icon";
+        }*/
         return trendingVals;
     }
 }
