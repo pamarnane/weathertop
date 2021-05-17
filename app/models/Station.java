@@ -18,15 +18,13 @@ public class Station extends Model {
     public double lng;
     public Summary summary;
 
-    public Station(String name)
-    {
+    public Station(String name) {
         this.name = name;
     }
 
-    public Station(String name, double lat, double lng)
-    {
+    public Station(String name, double lat, double lng) {
         this.name = name;
-        this.lat  = lat;
+        this.lat = lat;
         this.lng = lng;
     }
 }

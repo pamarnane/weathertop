@@ -19,12 +19,12 @@
         <h3>No readings entered yet</h3>
     #{/else}
     <a href="/station/${station.id}">
-        <button class="ui icon button">
+        <button class="ui blue icon button">
             <i class="folder open icon"></i>
         </button>
     </a>
     <a href="/dashboard/deletestation/${station.id}">
-        <button class="ui icon button">
+        <button class="ui blue icon button">
             <i class="trash icon"></i>
         </button>
     </a>
@@ -39,11 +39,11 @@
         </div>
         <div class="field">
             <label>Latitude</label>
-            <input placeholder="00.00" type="number" step=".01" name="lat" required>
+            <input placeholder="00.00" type="number" step=".000001" name="lat" min="-90" max="90" required>
         </div>
         <div class="field">
             <label>Longitude</label>
-            <input placeholder="00.00" type="number" step=".01" name="lng" required>
+            <input placeholder="00.00" type="number" step=".000001" name="lng" min="-180" max="180" required>
         </div>
     </div>
     <button class="ui blue submit button">Add Station</button>

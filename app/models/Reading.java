@@ -15,10 +15,6 @@ public class Reading extends Model {
     public int windDirection;
     public Date date;
 
-    public Reading()
-    {
-
-    }
     public Reading(int code, double temperature, double windSpeed, int pressure) {
         this.code = code;
         this.temperature = temperature;
@@ -26,7 +22,7 @@ public class Reading extends Model {
         this.pressure = pressure;
     }
 
-    public Reading(int code, double temperature, double windSpeed, int windDirection, int pressure ) {
+    public Reading(int code, double temperature, double windSpeed, int windDirection, int pressure) {
         this.code = code;
         this.temperature = temperature;
         this.windSpeed = windSpeed;

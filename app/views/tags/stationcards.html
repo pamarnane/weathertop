@@ -1,5 +1,5 @@
-<div class="ui five cards">
-    <div class="ui card" style="background-color: #0000000d">
+<div class="ui blue five cards">
+    <div class="ui background card" style="background-color: #0000000d">
         <div class="content">
             <i class="right floated huge blue compass icon"></i>
             <div class="header">${_station.name}</div>
@@ -9,6 +9,7 @@
             </div>
         </div>
     </div>
+    #{if _station.summary != null}
     <div class="ui card" style="background-color: #0000000d">
         <div class="content">
             <i class="right floated huge blue ${_station.summary.weatherIcon}"></i>
@@ -58,5 +59,6 @@
             <i class="right floated blue ${_trendingVals?.pressTrend}"></i>
         </div>
     </div>
+    #{/if}
 </div>
 

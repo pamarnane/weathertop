@@ -5,7 +5,12 @@
 
 <section class="ui segment">
     #{stationcards station:station, trendingVals:trendingVals/}
-    #{listreadings station:station/}
+    #{if station.readings.size() != 0}
+        #{listreadings station:station/}
+    #{/if}
+    #{else}
+    <h3>Please add a reading to display Summary cards</h3>
+    #{/else}
 </section>
 #{addreading station:station/}
 

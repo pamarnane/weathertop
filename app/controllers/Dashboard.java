@@ -1,56 +1,52 @@
-/*package controllers;
-
-import play.mvc.Controller;
-
-public class Dashboard extends Controller {
-    public static void index()
-    {
-        render("start.html");
-    }
-}*/
 package controllers;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.List;
 
-        import models.Member;
-        import models.Station;
-        import models.Reading;
-        import models.Summary;
-        import play.Logger;
-        import play.mvc.Controller;
+import models.Member;
+import models.Station;
+import models.Summary;
+import play.Logger;
+import play.mvc.Controller;
 
-public class Dashboard extends Controller
-{
+/**
+ * Dashboard controller handles the addition and deletion
+ * of stations for the WeatherTop application
+ *
+ * @author Patrick Marnane
+ * @version 1.0
+ * @since 2021-05-17
+ */
+public class Dashboard extends Controller {
 
-    public static void index()
-    {
+    public static void index() {
         Logger.info("Rendering Dashboard");
         Member member = Accounts.getLoggedInMember();
         List<Station> stations = member.stations;
 
-        for (int i = 0; i < stations.size(); i++)
-        {
-            if (stations.get(i).readings.size() != 0)
-            {
+        for (int i = 0; i < stations.size(); i++) {
+            if (stations.get(i).readings.size() != 0) {
                 stations.get(i).summary = new Summary(stations.get(i).readings.get(i), stations.get(i));
             }
         }
-        render ("dashboard.html", stations);
+        render("dashboard.html", stations);
     }
 
-    public static void addStation(String name, double lat, double lng)
-    {
+    public static void addStation(String name, double lat, double lng) {
         Member member = Accounts.getLoggedInMember();
-        Station station = new Station(name, lat, lng);
-        member.stations.add(station);
-        member.save();
-        Logger.info("Adding Station" + name);
-        redirect("/dashboard");
+        try {
+            Station station = new Station(name, lat, lng);
+            member.stations.add(station);
+            member.save();
+            Logger.info("Adding Station" + name);
+            redirect("/dashboard");
+        } catch (Exception e) {
+            System.err.println("Caught exception: " + e);
+            redirect("/dashboard.html");
+        }
+
     }
 
-    public static void deleteStation(Long id)
-    {
+    public static void deleteStation(Long id) {
         Member member = Accounts.getLoggedInMember();
 
         Station station = Station.findById(id);
@@ -60,5 +56,4 @@ public class Dashboard extends Controller
         Logger.info("Deleting Station");
         redirect("/dashboard");
     }
-    
 }

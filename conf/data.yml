@@ -33,7 +33,7 @@ Reading(r4):
 Station(s1):
   name: Tramore
   lat: 52.1623500
-  longitude: -7.1524400
+  lng: -7.1524400
   readings:
     - r1
     - r2
