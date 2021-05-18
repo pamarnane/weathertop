@@ -16,10 +16,6 @@ public class Trending {
     public String windTrend;
     public String pressTrend;
 
-    public Trending() {
-
-    }
-
     public static Trending trendingVals(List<Reading> readings) {
         Trending trendingVals = new Trending();
         int i = readings.size();
