@@ -9,7 +9,7 @@ public class Conversions {
     public static HashMap<Integer, String> weatherString;
     public static HashMap<Integer, String> weatherIconMap;
 
-    public static void fillWeatherString() {
+    private static void fillWeatherString() {
         weatherString = new HashMap<Integer, String>();
         weatherString.put(100, "Clear");
         weatherString.put(200, "Partial Clouds");
@@ -44,12 +44,11 @@ public class Conversions {
     }
 
     public static double calcTempFahrenheit(double tempC) {
-        return (tempC * 9 / 5 + 32);
+        return (double) Math.round((tempC * 9 / 5 + 32)*100)/100;
     }
 
     public static int calcWindBeaufort(double wind) {
         int windBeaufort = 0;
-
 
         if (wind == 0) {
             windBeaufort = 0;

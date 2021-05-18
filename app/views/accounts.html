@@ -25,6 +25,7 @@
                 <input value="${member.password}" type="password" name="password">
             </div>
             <button class="ui blue submit button">Save</button>
+            <button class="ui red submit button" formaction="/accounts/${member.id}/delete" method="GET">Delete</button>
         </form>
     </div>
     <div class="column">

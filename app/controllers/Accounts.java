@@ -29,13 +29,18 @@ public class Accounts extends Controller {
 
     public static void register(String firstname, String lastname, String email, String password) {
         Logger.info("Registering new user " + email);
-        Member member = new Member(firstname, lastname, email, password);
-        try {
-            member.save();
-        } catch (Exception e) {
-            redirect("login");
+        Member member = Member.findByEmail(email);
+        if (member == null) {
+            member = new Member(firstname, lastname, email, password);
+            try {
+                member.save();
+            } catch (Exception e) {
+                redirect("signup");
+            }
+            redirect("/login");
+        } else {
+            redirect("/login");
         }
-        redirect("/");
     }
 
     public static void authenticate(String email, String password) {
@@ -71,5 +76,11 @@ public class Accounts extends Controller {
         member.password = password;
         member.save();
         redirect("/dashboard");
+    }
+
+    public static void delete(Long id) {
+        Member member = Member.findById(id);
+        member.delete();
+        redirect("/");
     }
 }
