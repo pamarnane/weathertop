@@ -6,46 +6,46 @@
 #{list items:stations, as:'station'}
 <section class="ui segment">
     <section class="ui segment">
-    #{if station.summary != null}
+        #{if station.summary != null}
         #{stationcards station:station, trendingVals:trendingVals/}
         <h2 class="ui header">
             ${station.name}
         </h2>
-    #{/if}
-    #{else}
+        #{/if}
+        #{else}
         <h2 class="ui header">
             ${station.name}
         </h2>
         <h3>No readings entered yet</h3>
-    #{/else}
-    <a href="/station/${station.id}">
-        <button class="ui blue icon button">
-            <i class="folder open icon"></i>
-        </button>
-    </a>
-    <a href="/dashboard/deletestation/${station.id}">
-        <button class="ui blue icon button">
-            <i class="trash icon"></i>
-        </button>
-    </a>
-</section>
-#{/list}
+        #{/else}
+        <a href="/station/${station.id}">
+            <button class="ui blue icon button">
+                <i class="folder open icon"></i>
+            </button>
+        </a>
+        <a href="/dashboard/deletestation/${station.id}">
+            <button class="ui blue icon button">
+                <i class="trash icon"></i>
+            </button>
+        </a>
+    </section>
+    #{/list}
 
-<form class="ui stacked segment form" action="/dashboard/addstation" method="POST">
-    <div class="three fields">
-        <div class="field">
-            <label>Name</label>
-            <input placeholder="Name" type="text" name="name" required>
+    <form class="ui stacked segment form" action="/dashboard/addstation" method="POST">
+        <div class="three fields">
+            <div class="field">
+                <label>Name</label>
+                <input placeholder="Name" type="text" name="name" required>
+            </div>
+            <div class="field">
+                <label>Latitude</label>
+                <input placeholder="00.00" type="number" step=".000001" name="lat" min="-90" max="90" required>
+            </div>
+            <div class="field">
+                <label>Longitude</label>
+                <input placeholder="00.00" type="number" step=".000001" name="lng" min="-180" max="180" required>
+            </div>
         </div>
-        <div class="field">
-            <label>Latitude</label>
-            <input placeholder="00.00" type="number" step=".000001" name="lat" min="-90" max="90" required>
-        </div>
-        <div class="field">
-            <label>Longitude</label>
-            <input placeholder="00.00" type="number" step=".000001" name="lng" min="-180" max="180" required>
-        </div>
-    </div>
-    <button class="ui blue submit button">Add Station</button>
-</form>
+        <button class="ui blue submit button">Add Station</button>
+    </form>
 

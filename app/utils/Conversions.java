@@ -44,7 +44,7 @@ public class Conversions {
     }
 
     public static double calcTempFahrenheit(double tempC) {
-        return (double) Math.round((tempC * 9 / 5 + 32)*100)/100;
+        return (double) Math.round((tempC * 9 / 5 + 32) * 100) / 100;
     }
 
     public static int calcWindBeaufort(double wind) {

@@ -28,9 +28,9 @@ public class Accounts extends Controller {
     }
 
     public static void register(String firstname, String lastname, String email, String password) {
-        Logger.info("Registering new user " + email);
         Member member = Member.findByEmail(email);
         if (member == null) {
+            Logger.info("Registering new user " + email);
             member = new Member(firstname, lastname, email, password);
             try {
                 member.save();
@@ -39,7 +39,8 @@ public class Accounts extends Controller {
             }
             redirect("/login");
         } else {
-            redirect("/login");
+            String message = "Email address has an existing account, please log in.";
+            render("login.html", message);
         }
     }
 
