@@ -52,9 +52,12 @@ public class Accounts extends Controller {
             Logger.info("Authentication successful");
             session.put("logged_in_Memberid", member.id);
             redirect("/dashboard");
-        } else {
+        } else if ((member != null) && (member.checkPassword(password) == false)) {
             String message = "Incorrect email/password, please try again.";
-            render("login.html", message);;
+            render("login.html", message);
+        } else {
+            String message = "No account exists for this email address";
+            render("login.html", message);
         }
     }
 
