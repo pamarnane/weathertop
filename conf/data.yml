@@ -68,6 +68,7 @@ Member(m1):
   email: patrick@weathertop.com
   password: secret
   stations:
+    - s3
 
 
 Member(m2):
