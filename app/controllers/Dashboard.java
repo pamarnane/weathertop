@@ -1,6 +1,8 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import models.Member;
@@ -23,11 +25,13 @@ public class Dashboard extends Controller {
     public static void index() {
         Logger.info("Rendering Dashboard");
         Member member = Accounts.getLoggedInMember();
-        List<Station> stations = member.stations;
+        List<Station> stations = member.getStations();
+        Collections.sort(stations, Comparator.comparing(models.Station::getName));
 
-        for (int i = 0; i < stations.size(); i++) {
-            if (stations.get(i).readings.size() != 0) {
-                stations.get(i).summary = new Summary(stations.get(i).readings.get(i), stations.get(i));
+        for (Station station : stations) {
+            int i = station.getReadings().size();
+            if (i != 0) {
+                station.setSummary(new Summary(station.getReadings().get(i - 1), station));
             }
         }
         render("dashboard.html", stations);
@@ -37,7 +41,7 @@ public class Dashboard extends Controller {
         Member member = Accounts.getLoggedInMember();
         try {
             Station station = new Station(name, lat, lng);
-            member.stations.add(station);
+            member.getStations().add(station);
             member.save();
             Logger.info("Adding Station" + name);
             redirect("/dashboard");
@@ -52,9 +56,9 @@ public class Dashboard extends Controller {
         Member member = Accounts.getLoggedInMember();
 
         Station station = Station.findById(id);
-        //int i = member.stations.indexOf(station);
-        member.stations.remove(member.stations.indexOf(station));
+        member.getStations().remove(station);
         member.save();
+        station.delete();
         Logger.info("Deleting Station");
         redirect("/dashboard");
     }

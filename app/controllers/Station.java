@@ -23,11 +23,11 @@ public class Station extends Controller {
 
     public void index(Long id) {
         models.Station station = models.Station.findById(id);
-        Trending trendingVals = trendingVals(station.readings);
+        Trending trendingVals = trendingVals(station.getReadings());
         Logger.info("Rendering station");
 
-        if (station.readings.size() != 0) {
-            station.summary = new Summary(station.readings.get(station.readings.size() - 1), station);
+        if (station.getReadings().size() != 0) {
+            station.setSummary(new Summary(station.getReadings().get(station.getReadings().size() - 1), station));
             render("station.html", station, trendingVals);
         } else {
             render("station.html", station);
@@ -40,7 +40,7 @@ public class Station extends Controller {
         try {
             models.Reading newReading = new models.Reading(code, temp, windSpeed, windDirection, pressure, date);
             models.Station station = models.Station.findById(id);
-            station.readings.add(newReading);
+            station.getReadings().add(newReading);
             station.save();
             redirect("/station/" + id);
         } catch (Exception e) {
@@ -52,8 +52,9 @@ public class Station extends Controller {
     public static void deleteReading(Long stationid, Long id) {
         models.Reading reading = models.Reading.findById(id);
         models.Station station = models.Station.findById(stationid);
-        station.readings.remove(station.readings.indexOf(reading));
+        station.getReadings().remove(reading);
         station.save();
+        reading.delete();
         redirect("/station/" + stationid);
     }
 

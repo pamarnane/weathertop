@@ -53,8 +53,8 @@ public class Accounts extends Controller {
             session.put("logged_in_Memberid", member.id);
             redirect("/dashboard");
         } else {
-            Logger.info("Authentication failed");
-            redirect("/login");
+            String message = "Incorrect email/password, please try again.";
+            render("login.html", message);;
         }
     }
 
@@ -71,10 +71,10 @@ public class Accounts extends Controller {
 
     public static void update(Long id, String firstname, String lastname, String email, String password) {
         Member member = Member.findById(id);
-        member.firstname = firstname;
-        member.lastname = lastname;
-        member.email = email;
-        member.password = password;
+        member.setFirstname(firstname);
+        member.setLastname(lastname);
+        member.setEmail(email);
+        member.setPassword(password);
         member.save();
         redirect("/dashboard");
     }

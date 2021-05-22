@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Conversions {
-    public static HashMap<Integer, String> weatherString;
-    public static HashMap<Integer, String> weatherIconMap;
+    private static HashMap<Integer, String> weatherString;
+    private static HashMap<Integer, String> weatherIconMap;
 
     private static void fillWeatherString() {
         weatherString = new HashMap<Integer, String>();
@@ -135,8 +135,8 @@ public class Conversions {
      */
     public static HashSet<Double> tempHashSet(Station station) {
         HashSet<Double> tempHashSet = new HashSet<>();
-        for (int i = 0; i < station.readings.size(); i++) {
-            tempHashSet.add(station.readings.get(i).temperature);
+        for (int i = 0; i < station.getReadings().size(); i++) {
+            tempHashSet.add(station.getReadings().get(i).getTemperature());
         }
         return tempHashSet;
     }
@@ -152,8 +152,8 @@ public class Conversions {
      */
     public static HashSet<Integer> pressHashSet(Station station) {
         HashSet<Integer> pressHashSet = new HashSet<>();
-        for (int i = 0; i < station.readings.size(); i++) {
-            pressHashSet.add(station.readings.get(i).pressure);
+        for (int i = 0; i < station.getReadings().size(); i++) {
+            pressHashSet.add(station.getReadings().get(i).getPressure());
         }
         return pressHashSet;
     }
@@ -169,8 +169,8 @@ public class Conversions {
      */
     public static HashSet<Double> windHashSet(Station station) {
         HashSet<Double> windHashSet = new HashSet<>();
-        for (int i = 0; i < station.readings.size(); i++) {
-            windHashSet.add(station.readings.get(i).windSpeed);
+        for (int i = 0; i < station.getReadings().size(); i++) {
+            windHashSet.add(station.getReadings().get(i).getWindSpeed());
         }
         return windHashSet;
     }

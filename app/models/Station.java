@@ -11,12 +11,12 @@ import java.util.List;
 
 @Entity
 public class Station extends Model {
-    public String name;
+    private String name;
     @OneToMany(cascade = CascadeType.ALL)
-    public List<Reading> readings = new ArrayList<Reading>();
-    public double lat;
-    public double lng;
-    public Summary summary;
+    private List<Reading> readings = new ArrayList<Reading>();
+    private double lat;
+    private double lng;
+    private Summary summary;
 
     public Station(String name) {
         this.name = name;
@@ -26,5 +26,45 @@ public class Station extends Model {
         this.name = name;
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Reading> getReadings() {
+        return readings;
+    }
+
+    public void setReadings(List<Reading> readings) {
+        this.readings = readings;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    public Summary getSummary() {
+        return summary;
+    }
+
+    public void setSummary(Summary summary) {
+        this.summary = summary;
     }
 }

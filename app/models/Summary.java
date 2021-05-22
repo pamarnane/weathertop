@@ -17,25 +17,24 @@ import utils.Conversions;
  */
 @Entity
 public class Summary extends Model {
+    private String weatherDesc;
+    private String weatherIcon;
 
-    public String weatherDesc;
-    public String weatherIcon;
-
-    public double tempC;
-    public double maxTempC;
-    public double minTempC;
-    public double tempF;
+    private double tempC;
+    private double maxTempC;
+    private double minTempC;
+    private double tempF;
 
 
-    public int windBft;
-    public String windDirectionString;
-    public double windChill;
-    public double maxWindSpd;
-    public double minWindSpd;
+    private int windBft;
+    private String windDirectionString;
+    private double windChill;
+    private double maxWindSpd;
+    private double minWindSpd;
 
-    public int pressure;
-    public int maxPressure;
-    public int minPressure;
+    private int pressure;
+    private int maxPressure;
+    private int minPressure;
 
     public Summary(int code, double tempC, double windSpeed, int windDirection, double windVel, int pressure) {
         this.weatherDesc = Conversions.getWeatherString(code);
@@ -49,25 +48,25 @@ public class Summary extends Model {
     }
 
     public Summary(Reading latestReading) {
-        this.weatherDesc = Conversions.getWeatherString(latestReading.code);
-        this.weatherIcon = Conversions.getWeatherIcon(latestReading.code);
-        this.tempC = latestReading.temperature;
-        this.tempF = Conversions.calcTempFahrenheit(latestReading.temperature);
-        this.windBft = Conversions.calcWindBeaufort(latestReading.windSpeed);
-        this.windDirectionString = Conversions.calcWindDirection(latestReading.windDirection);
-        this.windChill = Conversions.calcWindChill(latestReading.temperature, latestReading.windSpeed);
-        this.pressure = latestReading.pressure;
+        this.weatherDesc = Conversions.getWeatherString(latestReading.getCode());
+        this.weatherIcon = Conversions.getWeatherIcon(latestReading.getCode());
+        this.tempC = latestReading.getTemperature();
+        this.tempF = Conversions.calcTempFahrenheit(latestReading.getTemperature());
+        this.windBft = Conversions.calcWindBeaufort(latestReading.getWindSpeed());
+        this.windDirectionString = Conversions.calcWindDirection(latestReading.getWindDirection());
+        this.windChill = Conversions.calcWindChill(latestReading.getTemperature(), latestReading.getWindSpeed());
+        this.pressure = latestReading.getPressure();
     }
 
     public Summary(Reading latestReading, Station station) {
-        this.weatherDesc = Conversions.getWeatherString(latestReading.code);
-        this.weatherIcon = Conversions.getWeatherIcon(latestReading.code);
-        this.tempC = latestReading.temperature;
-        this.tempF = Conversions.calcTempFahrenheit(latestReading.temperature);
-        this.windBft = Conversions.calcWindBeaufort(latestReading.windSpeed);
-        this.windDirectionString = Conversions.calcWindDirection(latestReading.windDirection);
-        this.windChill = Conversions.calcWindChill(latestReading.temperature, latestReading.windSpeed);
-        this.pressure = latestReading.pressure;
+        this.weatherDesc = Conversions.getWeatherString(latestReading.getCode());
+        this.weatherIcon = Conversions.getWeatherIcon(latestReading.getCode());
+        this.tempC = latestReading.getTemperature();
+        this.tempF = Conversions.calcTempFahrenheit(latestReading.getTemperature());
+        this.windBft = Conversions.calcWindBeaufort(latestReading.getWindSpeed());
+        this.windDirectionString = Conversions.calcWindDirection(latestReading.getWindDirection());
+        this.windChill = Conversions.calcWindChill(latestReading.getTemperature(), latestReading.getWindSpeed());
+        this.pressure = latestReading.getPressure();
 
         this.minTempC = Collections.min(Conversions.tempHashSet(station));
         this.maxTempC = Collections.max(Conversions.tempHashSet(station));

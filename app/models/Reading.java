@@ -8,12 +8,12 @@ import java.util.Date;
 
 @Entity
 public class Reading extends Model {
-    public int code;
-    public double temperature;
-    public double windSpeed;
-    public int pressure;
-    public int windDirection;
-    public Date date;
+    private int code;
+    private double temperature;
+    private double windSpeed;
+    private int pressure;
+    private int windDirection;
+    private Date date;
 
     public Reading(int code, double temperature, double windSpeed, int pressure) {
         this.code = code;
@@ -43,15 +43,47 @@ public class Reading extends Model {
         return code;
     }
 
+    public void setCode(int code) {
+        this.code = code;
+    }
+
     public double getTemperature() {
         return temperature;
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
     }
 
     public double getWindSpeed() {
         return windSpeed;
     }
 
+    public void setWindSpeed(double windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
     public int getPressure() {
         return pressure;
+    }
+
+    public void setPressure(int pressure) {
+        this.pressure = pressure;
+    }
+
+    public int getWindDirection() {
+        return windDirection;
+    }
+
+    public void setWindDirection(int windDirection) {
+        this.windDirection = windDirection;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
