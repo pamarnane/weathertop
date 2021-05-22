@@ -30,6 +30,14 @@ Reading(r4):
   windDirection: 120
   pressure: 999
 
+Reading(r5):
+  date: 2021-01-19 09:31:00.000
+  code: 100
+  temperature: 12.0
+  windSpeed: 4.3
+  windDirection: 180
+  pressure: 1001
+
 Station(s1):
   name: Tramore
   lat: 52.1623500
@@ -42,6 +50,14 @@ Station(s2):
   name: Dunmore
   lat: 52.1499994
   lng: -6.9833294
+  readings:
+    - r3
+    - r4
+
+Station(s3):
+  name: Lahinch
+  lat: 52.9335
+  lng: 9.3441
   readings:
     - r3
     - r4
